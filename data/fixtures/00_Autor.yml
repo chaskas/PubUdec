@@ -1,0 +1,31 @@
+## YAML Template.
+---
+Autor:
+  a1:
+    nombre:           Ricardo
+    apellido:         Contreras
+    titulo:           Master en Informática
+    direccion:        
+    departamento:     Informática
+    facultad:         Ingeniería
+    universidad:      Universidad de Concepción
+    ciudad:           Concepción
+    pais:             Chile
+    fono:             +(56-41) 2221770
+    fax:              
+    email:            rcontrer@udec.cl
+    foto:             8f5ac8de269d09e4a8ecf44eb319cd078a3358a4.jpg
+  a2:
+    nombre:           Alessandro
+    apellido:         Garcia
+    titulo:           Lecturer
+    direccion:        
+    departamento:     Computing Department
+    facultad:         
+    universidad:      Lancaster University
+    ciudad:           
+    pais:             
+    fono:             
+    fax:              
+    email:            garciaa@comp.lancs.ac.uk
+    foto:             2328981c6e95f89e3cd11fb4b43b656e49ecfa7c.jpg

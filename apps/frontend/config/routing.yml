@@ -1,10 +1,23 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+autor:
+  class:   sfDoctrineRouteCollection
+  options: { model: Autor }
+
+perfil_autor:
+  url:     /autor/:slug
+  class:   sfDoctrineRoute
+  options: { model: Autor, type: object }
+  param:   { module: autor, action: perfil }
+  requirements:
+    slud: \w+
+    sf_method: [get]
+
 # default rules
 homepage:
   url:   /
-  param: { module: default, action: index }
+  param: { module: dashboard, action: index }
 
 # generic rules
 # please, remove them by adding more specific rules
@@ -14,3 +27,4 @@ default_index:
 
 default:
   url:   /:module/:action/*
+

@@ -2,4 +2,15 @@
 # http://www.symfony-project.org/reference/1_4/en/11-App
 
 # default values
-#all:
+all:
+  sfDoctrineJCroppablePlugin:
+    models:
+      Autor:
+        directory:      images/Autor
+        images:
+          foto:
+            padding:    { percent: 0, color: "#ffffff" }
+            ratio:      0.75
+            sizes:
+              avatar:   { width: 150 }
+              mini:   { width: 37 }

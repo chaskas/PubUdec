@@ -1,0 +1,44 @@
+# config/doctrine/schema.yml
+---
+Autor:
+  actAs:
+    Sluggable:
+      fields:         [ nombre,apellido ]
+      unique:         true
+    JCroppable:
+      images:         [ foto ]
+  columns:
+    nombre:           { type: text, notnull: true }
+    apellido:         { type: text, notnull: true }
+    titulo:           { type: text, notnull: false }
+    direccion:        { type: text, notnull: false }
+    departamento:     { type: text, notnull: false }
+    facultad:         { type: text, notnull: false }
+    universidad:      { type: text, notnull: false }
+    ciudad:           { type: text, notnull: false }
+    pais:             { type: text, notnull: false }
+    fono:             { type: text, notnull: false }
+    fax:              { type: text, notnull: false }
+    email:            { type: text, notnull: true }
+    
+Publicacion:
+  actAs:              { Timestampable: ~ }
+  columns:
+    titulo:           { type: text, notnull: true }
+    tipo_pub_id:      { type: integer, notnull: false }
+    autor_id:         { type: integer, notnull: true }
+    estado:           { type: integer, notnull: false }
+  relations:
+    Autor:            { onDelete: CASCADE, local: autor_id, foreign: id, foreignAlias: Publicaciones }
+    Tipo:             { class: Tipo, onDelete: SET NULL, local: tipo_pub_id, foreign: id, foreignAlias: Publicaciones }
+
+PublicacionCoautor:
+  columns:
+    publicacion_id:   { type: integer, notnull: true }
+    coautor_id:       { type: integer, notnull: true }
+  relations:
+    Autor:            { onDelete: CASCADE, local: coautor_id, foreign: id, foreignAlias: Coautores }
+    Publicacion:      { onDelete: CASCADE, local: publicacion_id, foreign: id, foreignAlias: Coautores }
+Tipo:
+  columns:
+    nombre:           { type: text, notnull: true }
