@@ -1,0 +1,9 @@
+## YAML Template.
+---
+Tipo:
+  t1:
+    nombre:           ISI
+  t2:
+    nombre:           Scielo
+  t3:
+    nombre:           Conferencia

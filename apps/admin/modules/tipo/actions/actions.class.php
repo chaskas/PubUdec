@@ -17,7 +17,7 @@ class tipoActions extends sfActions
       ->execute();
   }
 
-  public function executeNew(sfWebRequest $request)
+  public function executeNuevo(sfWebRequest $request)
   {
     $this->form = new TipoForm();
   }
@@ -30,10 +30,10 @@ class tipoActions extends sfActions
 
     $this->processForm($request, $this->form);
 
-    $this->setTemplate('new');
+    $this->setTemplate('nuevo');
   }
 
-  public function executeEdit(sfWebRequest $request)
+  public function executeEditar(sfWebRequest $request)
   {
     $this->forward404Unless($tipo = Doctrine_Core::getTable('Tipo')->find(array($request->getParameter('id'))), sprintf('Object tipo does not exist (%s).', $request->getParameter('id')));
     $this->form = new TipoForm($tipo);
@@ -47,7 +47,7 @@ class tipoActions extends sfActions
 
     $this->processForm($request, $this->form);
 
-    $this->setTemplate('edit');
+    $this->setTemplate('editar');
   }
 
   public function executeDelete(sfWebRequest $request)
@@ -67,7 +67,7 @@ class tipoActions extends sfActions
     {
       $tipo = $form->save();
 
-      $this->redirect('tipo/edit?id='.$tipo->getId());
+      $this->redirect('tipo/editar?id='.$tipo->getId());
     }
   }
 }

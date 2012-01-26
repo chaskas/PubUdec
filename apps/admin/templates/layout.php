@@ -71,7 +71,9 @@
           <?php if ($sf_user->isAuthenticated()): ?>
           <ul class="breadcrumbs first">
             <li><a href="<?php echo url_for($sf_context->getModuleName().'/index'); ?>"><?php echo ucfirst($sf_context->getModuleName()) ?></a></li>
-            <li class="active"><a href="<?php echo url_for($sf_context->getModuleName().'/'.$sf_context->getActionName()); ?>"><?php echo ucfirst($sf_context->getActionName()); ?></a></li>
+            <li class="active">
+              <?php echo ucfirst($sf_context->getActionName()); ?>
+            </li>
           </ul>
           <?php endif; ?>
 
