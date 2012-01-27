@@ -8,25 +8,25 @@
  * @property text $titulo
  * @property integer $tipo_pub_id
  * @property integer $autor_id
- * @property integer $estado
+ * @property text $estado
+ * @property text $coautores
  * @property Autor $Autor
  * @property Tipo $Tipo
- * @property Doctrine_Collection $Coautores
  * 
- * @method text                getTitulo()      Returns the current record's "titulo" value
- * @method integer             getTipoPubId()   Returns the current record's "tipo_pub_id" value
- * @method integer             getAutorId()     Returns the current record's "autor_id" value
- * @method integer             getEstado()      Returns the current record's "estado" value
- * @method Autor               getAutor()       Returns the current record's "Autor" value
- * @method Tipo                getTipo()        Returns the current record's "Tipo" value
- * @method Doctrine_Collection getCoautores()   Returns the current record's "Coautores" collection
- * @method Publicacion         setTitulo()      Sets the current record's "titulo" value
- * @method Publicacion         setTipoPubId()   Sets the current record's "tipo_pub_id" value
- * @method Publicacion         setAutorId()     Sets the current record's "autor_id" value
- * @method Publicacion         setEstado()      Sets the current record's "estado" value
- * @method Publicacion         setAutor()       Sets the current record's "Autor" value
- * @method Publicacion         setTipo()        Sets the current record's "Tipo" value
- * @method Publicacion         setCoautores()   Sets the current record's "Coautores" collection
+ * @method text        getTitulo()      Returns the current record's "titulo" value
+ * @method integer     getTipoPubId()   Returns the current record's "tipo_pub_id" value
+ * @method integer     getAutorId()     Returns the current record's "autor_id" value
+ * @method text        getEstado()      Returns the current record's "estado" value
+ * @method text        getCoautores()   Returns the current record's "coautores" value
+ * @method Autor       getAutor()       Returns the current record's "Autor" value
+ * @method Tipo        getTipo()        Returns the current record's "Tipo" value
+ * @method Publicacion setTitulo()      Sets the current record's "titulo" value
+ * @method Publicacion setTipoPubId()   Sets the current record's "tipo_pub_id" value
+ * @method Publicacion setAutorId()     Sets the current record's "autor_id" value
+ * @method Publicacion setEstado()      Sets the current record's "estado" value
+ * @method Publicacion setCoautores()   Sets the current record's "coautores" value
+ * @method Publicacion setAutor()       Sets the current record's "Autor" value
+ * @method Publicacion setTipo()        Sets the current record's "Tipo" value
  * 
  * @package    pubudec
  * @subpackage model
@@ -50,8 +50,12 @@ abstract class BasePublicacion extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('estado', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('estado', 'text', null, array(
+             'type' => 'text',
+             'notnull' => true,
+             ));
+        $this->hasColumn('coautores', 'text', null, array(
+             'type' => 'text',
              'notnull' => false,
              ));
     }
@@ -68,10 +72,6 @@ abstract class BasePublicacion extends sfDoctrineRecord
              'local' => 'tipo_pub_id',
              'foreign' => 'id',
              'onDelete' => 'SET NULL'));
-
-        $this->hasMany('PublicacionCoautor as Coautores', array(
-             'local' => 'id',
-             'foreign' => 'publicacion_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

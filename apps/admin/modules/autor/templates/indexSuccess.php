@@ -35,7 +35,8 @@
               <td class="center"><?php echo $autor->getEmail(); ?></td>
               <td class="center"><?php echo $autor->getFacultad(); ?></td>
               <td class="center">
-                <?php echo link_to(image_tag('fugue/gear.png', array('alt' => 'Editar', 'title' => 'Editar')), 'autor/editar?id=' . $autor->getId()) ?>
+                <?php echo link_to(image_tag('fugue/edit.png', array('alt' => 'Editar', 'title' => 'Editar')), 'autor/editar?id=' . $autor->getId()) ?>
+                <?php echo link_to(image_tag('fugue/address-book.png', array('alt' => 'Ver Publicaciones', 'title' => 'Ver Publicaciones')), 'publicacion/autor?autor_id=' . $autor->getId()) ?>
                 <?php echo link_to(image_tag('fugue/cross.png', array('alt' => 'Eliminar', 'title' => 'Eliminar')), 'autor/delete?id=' . $autor->getId(), array('method' => 'delete', 'confirm' => '¿Est&aacute;s seguro?')) ?>
               </td>
             </tr>

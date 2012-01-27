@@ -21,7 +21,7 @@
             <tr>
               <td><?php echo link_to($tipo->getNombre(),'tipo/editar?id=' . $tipo->getId()); ?></td>
               <td class="center">
-                <?php echo link_to(image_tag('fugue/gear.png', array('alt' => 'Editar', 'title' => 'Editar')), 'tipo/editar?id=' . $tipo->getId()) ?>
+                <?php echo link_to(image_tag('fugue/edit.png', array('alt' => 'Editar', 'title' => 'Editar')), 'tipo/editar?id=' . $tipo->getId()) ?>
                 <?php echo link_to(image_tag('fugue/cross.png', array('alt' => 'Eliminar', 'title' => 'Eliminar')), 'tipo/delete?id=' . $tipo->getId(), array('method' => 'delete', 'confirm' => '¿Est&aacute;s seguro?')) ?>
               </td>
             </tr>

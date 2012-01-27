@@ -42,24 +42,21 @@
                       <span class="title">Autores</span>
                     </a>
                   </li>
-                  <li <?php if($sf_context->getModuleName()=='publicacion') echo "class='active'"; ?>>
-                    <a href="<?php echo url_for('publicacion/index'); ?>">
-                      <span class="icon"><?php echo image_tag('menu/pages.png'); ?></span>
-                      <span class="title">Publicaciones</span>
-                    </a>
-                  </li>
+
                   <li <?php if($sf_context->getModuleName()=='tipo') echo "class='active'"; ?>>
                     <a href="<?php echo url_for('tipo/index'); ?>">
                       <span class="icon"><?php echo image_tag('menu/form.png'); ?></span>
                       <span class="title">Tipos</span>
                     </a>
                   </li>
+                  <?php if($sf_user->hasCredential('admin')) : ?>
                   <li <?php if($sf_context->getModuleName()=='sfGuardUser') echo "class='active'"; ?>>
-                    <a href="<?php echo url_for('@sf_guard_user'); ?>">
+                    <a href="<?php echo url_for('usuario/index'); ?>">
                       <span class="icon"><?php echo image_tag('menu/settings.png'); ?></span>
                       <span class="title">Usuarios</span>
                     </a>
                   </li>
+                  <?php endif; ?>
                 </ul>
                 <?php endif; ?>
               </div>

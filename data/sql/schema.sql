@@ -1,6 +1,5 @@
 CREATE TABLE autor (id BIGSERIAL, nombre text NOT NULL, apellido text NOT NULL, titulo text, direccion text, departamento text, facultad text, universidad text, ciudad text, pais text, fono text, fax text, email text NOT NULL, slug VARCHAR(255), foto VARCHAR(255), foto_x1 BIGINT, foto_y1 BIGINT, foto_x2 BIGINT, foto_y2 BIGINT, PRIMARY KEY(id));
-CREATE TABLE publicacion (id BIGSERIAL, titulo text NOT NULL, tipo_pub_id BIGINT, autor_id BIGINT NOT NULL, estado BIGINT, created_at TIMESTAMP NOT NULL, updated_at TIMESTAMP NOT NULL, PRIMARY KEY(id));
-CREATE TABLE publicacion_coautor (id BIGSERIAL, publicacion_id BIGINT NOT NULL, coautor_id BIGINT NOT NULL, PRIMARY KEY(id));
+CREATE TABLE publicacion (id BIGSERIAL, titulo text NOT NULL, tipo_pub_id BIGINT, autor_id BIGINT NOT NULL, estado text NOT NULL, coautores text, created_at TIMESTAMP NOT NULL, updated_at TIMESTAMP NOT NULL, PRIMARY KEY(id));
 CREATE TABLE tipo (id BIGSERIAL, nombre text NOT NULL, PRIMARY KEY(id));
 CREATE TABLE sf_guard_forgot_password (id BIGSERIAL, user_id BIGINT NOT NULL, unique_key VARCHAR(255), expires_at TIMESTAMP NOT NULL, created_at TIMESTAMP NOT NULL, updated_at TIMESTAMP NOT NULL, PRIMARY KEY(id));
 CREATE TABLE sf_guard_group (id BIGSERIAL, name VARCHAR(255) UNIQUE, description VARCHAR(1000), created_at TIMESTAMP NOT NULL, updated_at TIMESTAMP NOT NULL, PRIMARY KEY(id));
@@ -14,8 +13,6 @@ CREATE UNIQUE INDEX autor_sluggable ON autor (slug);
 CREATE INDEX is_active_idx ON sf_guard_user (is_active);
 ALTER TABLE publicacion ADD CONSTRAINT publicacion_tipo_pub_id_tipo_id FOREIGN KEY (tipo_pub_id) REFERENCES tipo(id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE publicacion ADD CONSTRAINT publicacion_autor_id_autor_id FOREIGN KEY (autor_id) REFERENCES autor(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;
-ALTER TABLE publicacion_coautor ADD CONSTRAINT publicacion_coautor_publicacion_id_publicacion_id FOREIGN KEY (publicacion_id) REFERENCES publicacion(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;
-ALTER TABLE publicacion_coautor ADD CONSTRAINT publicacion_coautor_coautor_id_autor_id FOREIGN KEY (coautor_id) REFERENCES autor(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE sf_guard_forgot_password ADD CONSTRAINT sf_guard_forgot_password_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_permission_id_sf_guard_permission_id FOREIGN KEY (permission_id) REFERENCES sf_guard_permission(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_group_id_sf_guard_group_id FOREIGN KEY (group_id) REFERENCES sf_guard_group(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;

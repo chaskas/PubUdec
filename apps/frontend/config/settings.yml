@@ -33,3 +33,7 @@ all:
 
     # Enable the database manager
     use_database:           true
+    #Locales
+    charset: utf-8
+    i18n:  true
+    default_culture:  es_ES

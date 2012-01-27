@@ -10,16 +10,12 @@
  */
 class publicacionActions extends sfActions
 {
-  public function executeIndex(sfWebRequest $request)
+  public function executeNueva(sfWebRequest $request)
   {
-    $this->publicacions = Doctrine_Core::getTable('Publicacion')
-      ->createQuery('a')
-      ->execute();
-  }
-
-  public function executeNew(sfWebRequest $request)
-  {
-    $this->form = new PublicacionForm();
+    $this->autor = Doctrine_Core::getTable('Autor')->find($request->getParameter('autor_id'));
+    $pub = new Publicacion();
+    $pub->setAutorId($request->getParameter('autor_id'));
+    $this->form = new PublicacionForm($pub);
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -30,11 +26,14 @@ class publicacionActions extends sfActions
 
     $this->processForm($request, $this->form);
 
-    $this->setTemplate('new');
+    $this->autor = Doctrine_Core::getTable('Autor')->find($request->getParameter('autor_id'));
+    $this->setTemplate('nueva');
+//    $this->redirect('publicacion/nueva?autor_id='.$request->getParameter('autor_id'));
   }
-
-  public function executeEdit(sfWebRequest $request)
+  
+  public function executeEditar(sfWebRequest $request)
   {
+    $this->autor = Doctrine_Core::getTable('Autor')->find($request->getParameter('autor_id'));
     $this->forward404Unless($publicacion = Doctrine_Core::getTable('Publicacion')->find(array($request->getParameter('id'))), sprintf('Object publicacion does not exist (%s).', $request->getParameter('id')));
     $this->form = new PublicacionForm($publicacion);
   }
@@ -47,7 +46,7 @@ class publicacionActions extends sfActions
 
     $this->processForm($request, $this->form);
 
-    $this->setTemplate('edit');
+    $this->setTemplate('editar');
   }
 
   public function executeDelete(sfWebRequest $request)
@@ -57,7 +56,7 @@ class publicacionActions extends sfActions
     $this->forward404Unless($publicacion = Doctrine_Core::getTable('Publicacion')->find(array($request->getParameter('id'))), sprintf('Object publicacion does not exist (%s).', $request->getParameter('id')));
     $publicacion->delete();
 
-    $this->redirect('publicacion/index');
+    $this->redirect('publicacion/autor?autor_id='.$request->getParameter('autor_id'));
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -67,7 +66,14 @@ class publicacionActions extends sfActions
     {
       $publicacion = $form->save();
 
-      $this->redirect('publicacion/edit?id='.$publicacion->getId());
+      $this->redirect('publicacion/editar?id='.$publicacion->getId().'&autor_id='.$request->getParameter('autor_id'));
     }
+  }
+  
+  public function executeAutor(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->autor = Doctrine_Core::getTable('Autor')->find($request->getParameter('autor_id')),sprintf('No hay publicaciones de ese autor.', $request->getParameter('autor_id')));
+    
+    $this->publicaciones = Doctrine_Core::getTable('Publicacion')->findByAutorId($this->autor->getId());
   }
 }

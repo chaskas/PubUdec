@@ -18,7 +18,6 @@
  * @property text $fax
  * @property text $email
  * @property Doctrine_Collection $Publicaciones
- * @property Doctrine_Collection $Coautores
  * 
  * @method text                getNombre()        Returns the current record's "nombre" value
  * @method text                getApellido()      Returns the current record's "apellido" value
@@ -33,7 +32,6 @@
  * @method text                getFax()           Returns the current record's "fax" value
  * @method text                getEmail()         Returns the current record's "email" value
  * @method Doctrine_Collection getPublicaciones() Returns the current record's "Publicaciones" collection
- * @method Doctrine_Collection getCoautores()     Returns the current record's "Coautores" collection
  * @method Autor               setNombre()        Sets the current record's "nombre" value
  * @method Autor               setApellido()      Sets the current record's "apellido" value
  * @method Autor               setTitulo()        Sets the current record's "titulo" value
@@ -47,7 +45,6 @@
  * @method Autor               setFax()           Sets the current record's "fax" value
  * @method Autor               setEmail()         Sets the current record's "email" value
  * @method Autor               setPublicaciones() Sets the current record's "Publicaciones" collection
- * @method Autor               setCoautores()     Sets the current record's "Coautores" collection
  * 
  * @package    pubudec
  * @subpackage model
@@ -115,10 +112,6 @@ abstract class BaseAutor extends sfDoctrineRecord
         $this->hasMany('Publicacion as Publicaciones', array(
              'local' => 'id',
              'foreign' => 'autor_id'));
-
-        $this->hasMany('PublicacionCoautor as Coautores', array(
-             'local' => 'id',
-             'foreign' => 'coautor_id'));
 
         $sluggable0 = new Doctrine_Template_Sluggable(array(
              'fields' => 

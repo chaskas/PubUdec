@@ -15,5 +15,11 @@ class autorActions extends sfActions
 //    $this->autor = Doctrine_Core::getTable('Autor')->find(array($request->getParameter('id')));
 //    $this->forward404Unless($this->autor);
     $this->autor = $this->getRoute()->getObject();
+    
+    $this->publicaciones = Doctrine_Core::getTable('Publicacion')
+            ->createQuery('a')
+            ->where('autor_id = ?', $this->autor->getId())
+            ->orderBy('created_at DESC')
+            ->execute();
   }
 }

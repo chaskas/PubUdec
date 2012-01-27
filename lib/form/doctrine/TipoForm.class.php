@@ -12,5 +12,8 @@ class TipoForm extends BaseTipoForm
 {
   public function configure()
   {
+    $this->validatorSchema['nombre']     = new sfValidatorString();
+    $errorRowFormat = "<span style='color:red;'>No v&aacute;lido</span>";
+    $this->getWidgetSchema()->getFormFormatter()->setErrorListFormatInARow($errorRowFormat);
   }
 }

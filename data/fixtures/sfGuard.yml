@@ -6,15 +6,30 @@ sfGuardUser:
     username:       admin
     password:       admin
     is_super_admin: true
-    Groups:         [Group_admin]
+    Groups:         [Administradores]
+  User_secre:
+    first_name:     Secretaria
+    last_name:      DIICC
+    email_address:  secrediicc@udec.cl
+    username:       secretaria
+    password:       secretaria
+    is_super_admin: false
+    Groups:         [Secretarias]
 
 sfGuardGroup:
-  Group_admin:
+  Administradores:
     name:           admin
     description:    Administrator group
     Permissions:    [Permission_admin]
+  Secretarias:
+    name:           secre
+    description:    Secretaria group
+    Permissions:    [Permission_secre]
 
 sfGuardPermission:
   Permission_admin:
     name:           admin
     description:    Administrator permission
+  Permission_secre:
+    name:           secre
+    description:    Secretaria permission

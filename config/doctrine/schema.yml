@@ -27,18 +27,19 @@ Publicacion:
     titulo:           { type: text, notnull: true }
     tipo_pub_id:      { type: integer, notnull: false }
     autor_id:         { type: integer, notnull: true }
-    estado:           { type: integer, notnull: false }
+    estado:           { type: text, notnull: true }
+    coautores:        { type: text, notnull: false }
   relations:
     Autor:            { onDelete: CASCADE, local: autor_id, foreign: id, foreignAlias: Publicaciones }
     Tipo:             { class: Tipo, onDelete: SET NULL, local: tipo_pub_id, foreign: id, foreignAlias: Publicaciones }
 
-PublicacionCoautor:
-  columns:
-    publicacion_id:   { type: integer, notnull: true }
-    coautor_id:       { type: integer, notnull: true }
-  relations:
-    Autor:            { onDelete: CASCADE, local: coautor_id, foreign: id, foreignAlias: Coautores }
-    Publicacion:      { onDelete: CASCADE, local: publicacion_id, foreign: id, foreignAlias: Coautores }
+#PublicacionCoautor:
+#  columns:
+#    publicacion_id:   { type: integer, notnull: true }
+#    coautor_id:       { type: integer, notnull: true }
+#  relations:
+#    Autor:            { onDelete: CASCADE, local: coautor_id, foreign: id, foreignAlias: Coautores }
+#    Publicacion:      { onDelete: CASCADE, local: publicacion_id, foreign: id, foreignAlias: Coautores }
 Tipo:
   columns:
     nombre:           { type: text, notnull: true }

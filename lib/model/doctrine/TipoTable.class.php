@@ -16,4 +16,11 @@ class TipoTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Tipo');
     }
+    public function getTipos() {
+    return Doctrine_Query::create()
+                    ->select('*')
+                    ->from('Tipo')
+                    ->OrderBy('nombre asc')
+                    ->execute();
+  }
 }

@@ -255,3 +255,6 @@ header .search {
 }
 
 .widget_options .search {padding: 3px 5px}
+.ac_over{
+  background-color: #577DAA !important;
+}

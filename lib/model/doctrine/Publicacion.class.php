@@ -12,4 +12,7 @@
  */
 class Publicacion extends BasePublicacion
 {
+  public function getFechaPublicacion(){
+    return PubUdeC::formatDate($this->getCreatedAt());
+  }
 }

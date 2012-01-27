@@ -26,6 +26,11 @@ class PubUdeC {
 
     return $text;
   }
+  public static function formatDate($str)
+  {
+    $date = date_create($str);
+    return date_format($date, 'd/m/Y');
+  }
 
 }
 

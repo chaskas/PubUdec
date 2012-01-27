@@ -1,9 +1,12 @@
-<?php use_helper('I18N') ?>
-
-<h2><?php echo __('Oops! The page you asked for is secure and you do not have proper credentials.', null, 'sf_guard') ?></h2>
-
-<p><?php echo sfContext::getInstance()->getRequest()->getUri() ?></p>
-
-<h3><?php echo __('Login below to gain access', null, 'sf_guard') ?></h3>
-
-<?php echo get_component('sfGuardAuth', 'signin_form') ?>
+<div class="grid_16 widget tabs first">
+  <div class="widget_title clearfix">
+    <h2>Error</h2>
+  </div>
+  <div class="widget_body">            
+    <center>
+      <br/>
+    No tiene los permisos suficientes para acceder a esta p&aacute;gina.
+    <br/><br/>
+    </center>
+  </div>
+</div>

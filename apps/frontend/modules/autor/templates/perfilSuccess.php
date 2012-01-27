@@ -101,3 +101,37 @@
   </div>
 
 </div>
+
+<div class="grid_16 widget tabs first">
+  <div class="widget_title clearfix">
+    <h2>Publicaciones</h2>
+  </div>
+  <div class="widget_body">            
+      <div id="table3">
+      <table class="simple">
+        <thead>
+          <tr>
+            <td>T&iacute;tulo</td>
+            <td>Coautores</td>
+            <td class="center">Tipo</td>
+            <td class="center">Fecha</td>
+            <td class="center">Estado</td>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach($publicaciones as $publicacion) : ?>
+            <tr>
+              <td><?php echo $publicacion->getTitulo(); ?></td>
+              <td><?php echo $publicacion->getCoautores(); ?></td>
+              <td class="center"><?php echo $publicacion->getTipo(); ?></td>
+              <td class="center"><?php echo $publicacion->getFechaPublicacion(); ?></td>
+              <td class="center"><?php echo $publicacion->getEstado(); ?></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+

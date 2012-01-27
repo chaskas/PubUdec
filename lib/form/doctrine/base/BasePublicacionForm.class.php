@@ -20,6 +20,7 @@ abstract class BasePublicacionForm extends BaseFormDoctrine
       'tipo_pub_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Tipo'), 'add_empty' => true)),
       'autor_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Autor'), 'add_empty' => false)),
       'estado'      => new sfWidgetFormInputText(),
+      'coautores'   => new sfWidgetFormInputText(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));
@@ -29,7 +30,8 @@ abstract class BasePublicacionForm extends BaseFormDoctrine
       'titulo'      => new sfValidatorPass(),
       'tipo_pub_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Tipo'), 'required' => false)),
       'autor_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Autor'))),
-      'estado'      => new sfValidatorInteger(array('required' => false)),
+      'estado'      => new sfValidatorPass(),
+      'coautores'   => new sfValidatorPass(array('required' => false)),
       'created_at'  => new sfValidatorDateTime(),
       'updated_at'  => new sfValidatorDateTime(),
     ));
