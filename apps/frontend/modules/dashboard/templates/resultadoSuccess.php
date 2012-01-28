@@ -9,14 +9,13 @@
         <thead>
           <tr>
             <td class="center">Foto</td>
-            <td>Autor</td>
-            <td class="center">T&iacute;tulo Publicaci&oacute;n</td>
+            <td style="width: 150px;">Autor</td>
+            <td>T&iacute;tulo Publicaci&oacute;n</td>
             <td class="center">Tipo</td>
             <td class="center">Fecha</td>
           </tr>
         </thead>
         <tbody>
-          <?php //print_r($resultados); ?>
           <?php foreach ($resultados as $rs) : ?>
             <tr>
               <td class="center">
@@ -27,8 +26,8 @@
                 <?php endif; ?>
               </td>
               <td><?php echo link_to($rs->getAutor()->getNombreCompleto(), 'perfil_autor', $rs->getAutor()) ?></td>
-              <td class="center"><?php echo $rs->getTitulo(); ?></td>
-              <td class="center"><?php echo $rs->getEstado(); ?></td>
+              <td><?php echo $rs->getTitulo(); ?></td>
+              <td class="center"><?php echo $rs->getTipo()->getNombre(); ?></td>
               <td class="center"><?php echo $rs->getFechaPublicacion(); ?></td>
             </tr>
           <?php endforeach; ?>
@@ -38,3 +37,5 @@
 
   </div>
 </div>
+
+<?php // print_r($desde); ?>

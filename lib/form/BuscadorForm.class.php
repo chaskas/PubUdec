@@ -30,7 +30,7 @@ class BuscadorForm extends sfForm {
     $this->validatorSchema['hasta'] = new sfValidatorString(array('required' => false));
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-    $this->widgetSchema->setNameFormat('buscador[%s]');
+    $this->widgetSchema->setNameFormat('%s');
     $this->widgetSchema->setFormFormatterName('list');
 
     $errorRowFormat = "<span style='color:red;'>Inv&aacute;lido</span>";

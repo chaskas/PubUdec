@@ -18,10 +18,12 @@ class AutorTable extends Doctrine_Table {
 
   function getAutoresBySearch($q, $limit) {
     $q = Doctrine_Query::create()
-            ->from('Autor')
-            ->andWhere('nombre like ?', '%' . $q . '%')
+            ->from('Autor a')
+            ->Where("lower(a.nombre) like lower('%" . $q . "%')")
+            ->orWhere("lower(a.apellido) like lower('%" . $q . "%')")
             ->addOrderBy('nombre')
             ->limit($limit);
+    
     $autores = array();
     foreach ($q->execute() as $autor) {
       $autores[$autor->getId()] = (string) $autor;

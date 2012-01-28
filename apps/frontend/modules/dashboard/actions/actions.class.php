@@ -34,15 +34,33 @@ class dashboardActions extends sfActions {
   }
 
   public function executeResultado(sfWebRequest $request) {
+    
+    //$this->forwardUnless($query = $request->getParameter('autor'), 'dashboard', 'resultado');
+    
     $autor_id = $request->getParameter('autor');
     $tipo_pub_id = $request->getParameter('tipo');
-    $this->resultados = Doctrine_Query::create()
-    ->select('*')
-    ->from('Publicacion p,Autor a')
-    ->where('p.autor_id = ?',2)
-    ->andWhere('p.estado = ?',$tipo_pub_id)
-    //->orWhere('p.created_at BETWEEN ? AND ?',array($request->getParameter('desde'),$request->getParameter('hasta')))
-    ->execute();
+    $desde = $request->getParameter('desde');
+    $hasta = $request->getParameter('hasta');
+    
+    $q = Doctrine_Query::create()->select('*')->from('Publicacion p,Autor a');
+    
+    if(!empty($autor_id)){
+      $q->andWhere("p.autor_id = ? ",$autor_id);
+    }
+    if(!empty($tipo_pub_id)){
+      $q->andWhere("p.tipo_pub_id = ?",$tipo_pub_id);
+    }
+    
+    if(!empty($desde) && !empty($hasta)){
+      $q->andWhere("p.created_at BETWEEN ? and ?",array(
+          $desde['year']."-".$desde['month']."-".$desde['day']." 00:00:00",
+          $hasta['year']."-".$hasta['month']."-".$hasta['day']." 23:59:59"
+          ));
+    }
+
+    $this->resultados = $q->execute();
+    
+    $this->desde = $desde;
   }
 
 }
