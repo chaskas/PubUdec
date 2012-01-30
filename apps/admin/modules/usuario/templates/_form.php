@@ -21,7 +21,9 @@
       <br/>
       <?php echo $form['last_name']->render(array('style' => 'width:100%')) ?>
     </div>
+    
     <div style="clear:both;"></div>
+    
     <div style="float: left; margin-left: 20px;width:52%;">
       <strong>Email</strong>
       <?php echo $form['email_address']->renderError() ?>
@@ -46,9 +48,9 @@
     </div>
     <div style="float: left; margin-left: 20px;width:25%;">
       <strong>Repita Password</strong>
-      <?php echo $form['password']->renderError() ?>
+      <?php echo $form['password_again']->renderError() ?>
       <br/>
-      <?php echo $form['password']->render(array('style' => 'width:100%')) ?>
+      <?php echo $form['password_again']->render(array('style' => 'width:100%')) ?>
     </div>
 
     <div style="clear:both;"></div>

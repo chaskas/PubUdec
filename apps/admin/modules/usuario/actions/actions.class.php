@@ -18,7 +18,42 @@ class UsuarioActions extends sfActions
   }
   public function executeNuevo(sfWebRequest $request)
   {
-    $this->form = new sfGuardUserForm();
+    $this->form = new sfGuardRegisterForm();
+  }
+  public function executeCreate(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isMethod(sfRequest::POST));
+
+    $this->form = new sfGuardRegisterForm();
+
+    $this->processForm($request, $this->form);
+
+    $this->setTemplate('nuevo');
+  }
+  public function executeUpdate(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+    $this->forward404Unless($usuario = Doctrine_Core::getTable('sfGuardUser')->find(array($request->getParameter('id'))), sprintf('Object tipo does not exist (%s).', $request->getParameter('id')));
+    $this->form = new sfGuardRegisterForm($usuario);
+
+    $this->processForm($request, $this->form);
+
+    $this->setTemplate('editar');
+  }
+  protected function processForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if ($form->isValid())
+    {
+      $usuario = $form->save();
+
+      $this->redirect('usuario/editar?id='.$usuario->getId());
+    }
+  }
+  public function executeEditar(sfWebRequest $request)
+  {
+    $this->forward404Unless($usuario = Doctrine_Core::getTable('sfGuardUser')->find(array($request->getParameter('id'))), sprintf('Object tipo does not exist (%s).', $request->getParameter('id')));
+    $this->form = new sfGuardRegisterForm($usuario);
   }
   public function executeDelete(sfWebRequest $request)
   {

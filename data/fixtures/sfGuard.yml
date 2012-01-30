@@ -18,11 +18,11 @@ sfGuardUser:
 
 sfGuardGroup:
   Administradores:
-    name:           admin
+    name:           Administradores
     description:    Administrator group
     Permissions:    [Permission_admin]
   Secretarias:
-    name:           secre
+    name:           Secretarias
     description:    Secretaria group
     Permissions:    [Permission_secre]
 

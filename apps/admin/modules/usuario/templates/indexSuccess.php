@@ -14,7 +14,7 @@
           <tr>
             <td>Nombre</td>
             <td class="center">Email</td>
-            <td class="center">Permisos</td>
+            <td class="center">Grupo</td>
             <td class="center">Opciones</td>
           </tr>
         </thead>
@@ -23,7 +23,7 @@
             <tr>
               <td class="center"><?php echo $usuario->getFirstName()." ".$usuario->getLastName(); ?></td>
               <td class="center"><?php echo $usuario->getEmailAddress(); ?></td>
-              <td class="center"></td>
+              <td class="center"><?php foreach($usuario->getGroups() as $group){echo $group->getName();} ?></td>
               <td class="center">
                 <?php echo link_to(image_tag('fugue/edit.png', array('alt' => 'Editar', 'title' => 'Editar')), 'usuario/editar?id=' . $usuario->getId()) ?>
                 <?php echo link_to(image_tag('fugue/cross.png', array('alt' => 'Eliminar', 'title' => 'Eliminar')), 'usuario/delete?id=' . $usuario->getId(), array('method' => 'delete', 'confirm' => '¿Est&aacute;s seguro?')) ?>

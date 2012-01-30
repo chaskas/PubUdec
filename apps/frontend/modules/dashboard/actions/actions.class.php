@@ -51,7 +51,7 @@ class dashboardActions extends sfActions {
       $q->andWhere("p.tipo_pub_id = ?",$tipo_pub_id);
     }
     
-    if(!empty($desde) && !empty($hasta)){
+    if(!empty($desde['year']) && !empty($desde['month']) && !empty($desde['day']) && !empty($hasta['year']) && !empty($hasta['month']) && !empty($hasta['day'])){
       $q->andWhere("p.created_at BETWEEN ? and ?",array(
           $desde['year']."-".$desde['month']."-".$desde['day']." 00:00:00",
           $hasta['year']."-".$hasta['month']."-".$hasta['day']." 23:59:59"
@@ -59,8 +59,6 @@ class dashboardActions extends sfActions {
     }
 
     $this->resultados = $q->execute();
-    
-    $this->desde = $desde;
   }
 
 }
