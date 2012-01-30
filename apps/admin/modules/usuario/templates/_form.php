@@ -52,10 +52,23 @@
       <br/>
       <?php echo $form['password_again']->render(array('style' => 'width:100%')) ?>
     </div>
-
-    <div style="clear:both;"></div>
     
-
+  <div style="clear:both;"><br/></div>
+    
+    <div style="float: left; margin-left: 20px;width:25%;">
+      <strong>¿Est&aacute; Activo?</strong>
+      <?php echo $form['is_active']->renderError() ?>
+      <br/>
+      <?php echo $form['is_active']->render(array('style' => 'width:100%')) ?>
+    </div>
+    <div style="clear:both;"><br/></div>
+    
+    <div style="float: left; margin-left: 20px;width:25%;">
+      <strong>Grupos</strong>
+      <?php echo $form['groups_list']->renderError() ?>
+      <br/>
+      <?php echo $form['groups_list']->render(array('style' => 'width:100%')) ?>
+    </div>
 
     <div style="clear:both;"><br/></div>
 

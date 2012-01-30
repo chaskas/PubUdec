@@ -8,7 +8,7 @@
  * @author     Jonathan H. Wage <jonwage@gmail.com>
  * @version    SVN: $Id: BasesfGuardChangeUserPasswordForm.class.php 23536 2009-11-02 21:41:21Z Kris.Wallsmith $
  */
-class sfGuardRegisterForm extends BasesfGuardRegisterForm
+class sfGuardUserAdminForm extends BasesfGuardUserAdminForm
 {
   /**
    * @see sfForm
@@ -17,8 +17,6 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
   {
     $this->validatorSchema['first_name'] = new sfValidatorString(array('required' => true));
     $this->validatorSchema['last_name'] = new sfValidatorString(array('required' => true));
-    
-    //$this->widgetSchema['groups_list']->setLabel('Grupos');
     
     $this->widgetSchema['password'] = new sfWidgetFormInputPassword();
     $this->validatorSchema['password']->setOption('required', false);
